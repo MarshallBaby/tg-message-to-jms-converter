@@ -11,6 +11,7 @@ import org.springframework.jms.support.converter.MappingJackson2MessageConverter
 import org.springframework.jms.support.converter.MessageType;
 import pl.marshallbaby.tgmessagetojmsconverter.message.CommandMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.Message;
+import pl.marshallbaby.tgmessagetojmsconverter.message.PhotoMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.TextMessage;
 
 @Configuration
@@ -31,6 +32,8 @@ public class ActiveMQConfiguration {
     typeIdMappings.put("Message", Message.class);
     typeIdMappings.put("TextMessage", TextMessage.class);
     typeIdMappings.put("CommandMessage", CommandMessage.class);
+    typeIdMappings.put("PhotoMessage", PhotoMessage.class);
+    typeIdMappings.put("Photo", PhotoMessage.Photo.class);
 
     converter.setTypeIdMappings(typeIdMappings);
     converter.setTargetType(MessageType.TEXT);

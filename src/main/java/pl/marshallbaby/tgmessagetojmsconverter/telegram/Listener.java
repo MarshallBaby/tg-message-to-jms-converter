@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import pl.marshallbaby.tgmessagetojmsconverter.message.CommandMessage;
+import pl.marshallbaby.tgmessagetojmsconverter.message.PhotoMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.TextMessage;
 
 @Service
@@ -28,12 +29,17 @@ public class Listener {
         if (update.message().text().startsWith("/")) {
           // Command
           jmsTemplate.convertAndSend(destination, new CommandMessage(update));
-          continue;
         } else {
           // Text
           jmsTemplate.convertAndSend(destination, new TextMessage(update));
-          continue;
         }
+        continue;
+      }
+
+      if (update.message().photo() != null) {
+        // Photo
+        jmsTemplate.convertAndSend(destination, new PhotoMessage(update));
+        continue;
       }
 
       log.warn("Unknown type of telegram update received: {}", update);
