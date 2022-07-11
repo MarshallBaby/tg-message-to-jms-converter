@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import pl.marshallbaby.tgmessagetojmsconverter.message.CommandMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.Message;
 import pl.marshallbaby.tgmessagetojmsconverter.message.PhotoMessage;
+import pl.marshallbaby.tgmessagetojmsconverter.message.StickerMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.TextMessage;
 
 @Service
@@ -57,6 +58,11 @@ public class Listener {
         // Photo
         sendAndLog(uuid, new PhotoMessage(update));
         continue;
+      }
+
+      if (update.message().sticker() != null) {
+        //Sticker
+        sendAndLog(uuid, new StickerMessage(update));
       }
 
       updatesLogger.warn("Unknown type of telegram update received: {}", update);

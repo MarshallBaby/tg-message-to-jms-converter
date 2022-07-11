@@ -7,12 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.jetbrains.annotations.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ToString
 public class PhotoMessage extends Message {
 
   private List<Photo> photos;

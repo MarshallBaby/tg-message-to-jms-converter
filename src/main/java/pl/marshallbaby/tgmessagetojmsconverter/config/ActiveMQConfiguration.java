@@ -12,6 +12,7 @@ import org.springframework.jms.support.converter.MessageType;
 import pl.marshallbaby.tgmessagetojmsconverter.message.CommandMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.Message;
 import pl.marshallbaby.tgmessagetojmsconverter.message.PhotoMessage;
+import pl.marshallbaby.tgmessagetojmsconverter.message.StickerMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.TextMessage;
 
 @Configuration
@@ -34,6 +35,7 @@ public class ActiveMQConfiguration {
     typeIdMappings.put("CommandMessage", CommandMessage.class);
     typeIdMappings.put("PhotoMessage", PhotoMessage.class);
     typeIdMappings.put("Photo", PhotoMessage.Photo.class);
+    typeIdMappings.put("StickerMessage", StickerMessage.class);
 
     converter.setTypeIdMappings(typeIdMappings);
     converter.setTargetType(MessageType.TEXT);
