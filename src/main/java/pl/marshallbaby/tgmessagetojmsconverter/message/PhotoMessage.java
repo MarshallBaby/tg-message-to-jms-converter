@@ -38,6 +38,7 @@ public class PhotoMessage extends Message {
       this.width = photoSize.width();
       this.height = photoSize.height();
     }
+
   }
 
 }
