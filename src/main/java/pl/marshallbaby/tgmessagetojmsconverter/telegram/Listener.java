@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
+import pl.marshallbaby.tgmessagetojmsconverter.message.AudioMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.CommandMessage;
 import pl.marshallbaby.tgmessagetojmsconverter.message.Message;
 import pl.marshallbaby.tgmessagetojmsconverter.message.PhotoMessage;
@@ -63,6 +64,14 @@ public class Listener {
       if (update.message().sticker() != null) {
         //Sticker
         sendAndLog(uuid, new StickerMessage(update));
+        continue;
+      }
+
+      if (update.message().audio() != null) {
+        //Audio
+        log.info("AUDIO");
+        sendAndLog(uuid, new AudioMessage(update));
+        continue;
       }
 
       updatesLogger.warn("Unknown type of telegram update received: {}", update);
